@@ -140,7 +140,7 @@ def get_grpc_server(user_model, annotations={}, trace_interceptor=None):
         options.append(("grpc.max_send_message_length", max_msg))
         options.append(("grpc.max_receive_message_length", max_msg))
 
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10), options=options)
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=1), options=options)
 
     if trace_interceptor:
         from grpc_opentracing.grpcext import intercept_server
